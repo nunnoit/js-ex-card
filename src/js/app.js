@@ -22,25 +22,75 @@ import "../style/index.css";
         city: null
     }
  */
-function render(variables = {}) {
+
+function render(variables) {
+  for (let key in variables) {
+    console.log("variables: ", variables[key]);
+    if (variables[`${key}`] == null) {
+      variables[key] = "";
+    }
+  }
+
   console.log("These are the current variables: ", variables); //print on the console
   // here we ask the logical questions to make decisions on how to build the html
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
+  // variables["name"] == null
+  //   ? (variables["name"] = "")
+  //   : console.log("si tiene nombre");
+
+  // variables["lastname"] == null
+  //   ? (variables["lastname"] = "")
+  //   : console.log("si tiene apellido");
+
+  // variables["role"] == null
+  //   ? (variables["role"] = "")
+  //   : console.log("si tiene roll");
+
+  // variables["country"] == null
+  //   ? (variables["country"] = "")
+  //   : console.log("si tiene country");
+
+  // variables["city"] == null
+  //   ? (variables["city"] = "")
+  //   : console.log("si tiene city");
+
+  // variables["twitter"] == null
+  //   ? (variables["twitter"] = "")
+  //   : console.log("si tiene twitter");
+
+  // variables["github"] == null
+  //   ? (variables["github"] = "")
+  //   : console.log("si tiene github");
+
+  // variables["linkedin"] == null
+  //   ? (variables["linkedin"] = "")
+  //   : console.log("si tiene linkedin");
+
+  // variables["instagram"] == null
+  //   ? (variables["instagram"] = "")
+  //   : console.log("si tiene insta");
+
+  // if (variables.socialMediaPosition == "position-left") {
+  //   variables.socialMediaPosition = "position-left";
+  // } else {
+  //   variables.socialMediaPosition = "position-right";
+  // }
   // reset the website body with the new html output
+
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a></li>
+          <h1>${variables.name} ${variables.lastname}</h1>
+          <h2>${variables.role}</h2>
+          <h3>${variables.city}, ${variables.country}</h3>
+          <ul class="${variables.socialMediaPosition}">
+            <li><a href="${variables.twitter}"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="${variables.github}"><i class="fab fa-github"></i></a></li>
+            <li><a href="${variables.linkedin}"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="${variables.instagram}"><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
@@ -60,15 +110,15 @@ window.onload = function() {
     // social media bar position (left or right)
     socialMediaPosition: "position-left",
     // social media usernames
-    twitter: null,
-    github: "alesanchezr",
-    linkedin: null,
-    instagram: null,
-    name: null,
-    lastname: null,
-    role: null,
-    country: null,
-    city: null
+    twitter: "Twitter",
+    github: "Github",
+    linkedin: "Linkedin",
+    instagram: "Instagram",
+    name: "Name",
+    lastname: "Lastname",
+    role: "Role",
+    country: "Country",
+    city: "City"
   };
   render(window.variables); //render the card for the first time
 
